@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Teko', sans-serif;
+}
+
+body {
+  background: linear-gradient(to bottom right, #e37474, #c883eb);
+}
+
+.calculator-grid {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 120vh;
+  grid-template-columns: repeat(4, 60px);
+  grid-template-rows: minmax(140px, auto), repeat(5, 120px);
+
+  box-shadow: 1.5px;
+}
+
+.calculator-grid > button {
+  padding: 10px;
+  font-size: 1.5rem;
+  background-color: rgba(255, 255, 255, .7);
+  border: 1px solid white;
+  cursor: pointer;
+  outline: none;
+}
+
+.calculator-grid > button:hover{
+  background-color: rgba(255, 255, 255, .9);
+} 
+
+.span-two {
+  grid-column: span 2;
+} 
+
+.output {
+  grid-column: 1 / -1;
+  background-color: rgba(0, 0, 0, .7);
+  border: 2px solid white;
+  padding-top: 40px;
+  padding-right: 10px;
+  color: rgba( 230, 230, 230, .95);
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.output .output-text {
+  font-size: 2rem;
+}
+
+
