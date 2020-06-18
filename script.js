@@ -28,5 +28,3 @@ function operate(num1, operator, num2) {
     
   }
 }
-
-console.log(add("bitch", "boy"));
