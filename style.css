@@ -1,15 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
 
 html {
-  font-size: 62.5%;
+  font-size: 80%;
   box-sizing: border-box;
   background-image: linear-gradient(to right, rgba(200, 130, 130, .3), rgba(180, 159, 190, 0.3)),url('images/webb.png');
+}
+
+.title {
+  font-size: 4rem;
+  position: absolute;
+  background: red;
+  color: #fff;
+  text-shadow: 1px 1px #333;
 }
 
 *, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+  font-family: 'Teko', sans-serif;
 }
 
 .calculator-body {
