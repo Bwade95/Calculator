@@ -2,17 +2,19 @@ class Calculator {
   constructor(currentOperandElement, previousOperandElement) {
     this.currentOperandElement = currentOperandElement;
     this.previousOperandElement = previousOperandElement;
+    this.readyToReset = false;
     this.clear();
-  }
 
+  }
+  
   clear() {
     this.currentOperand = '';
     this.previousOperand = '';
     this.operation = undefined;
-  }
+  } 
 
   delete() {
-
+    this.currentOperand = this.currentOperand.toString().slice(0, -1);
   }
 
   appendNumber(number) {
@@ -22,7 +24,7 @@ class Calculator {
 
   selectedOperator(operation) {
     if (this.currentOperand === '') return;
-    if (this.previousOperand !-== '') {
+    if (this.previousOperand !== '' && this.currentOperand !== "") {
       this.operate();
     }
     this.operation = operation;
@@ -34,25 +36,25 @@ class Calculator {
     let computation;
     const current = parseFloat(this.currentOperand);
     const prev = parseFloat(this.previousOperand);
-    if(isNan(current) || isNan(prev)) return;
-    
+    if(isNaN(current) || isNaN(prev)) return;
     switch(this.operation) {
       case "+":
-        computation = current + prev;
+        computation = prev + current;
         break;
       case "-":
-        computation = current - prev;
+        computation = prev - current;
         break;
-      case "*":
-        computation = current * prev;
+      case "×":
+        computation = prev * current;
         break;
-      case "/":
-        computation = current / prev;
+      case "÷":
+        computation = prev / current;
         break;
       default:
         console.log("Something happened");
-        return;
+        break;
     }
+    this.readyToReset = true;
     this.currentOperand = computation;
     this.operation = undefined;
     this.previousOperand = '';
@@ -60,7 +62,13 @@ class Calculator {
 
   updateDisplay() {
     this.currentOperandElement.innerText = this.currentOperand;
-    this.previousOperandElement.innerText = this.previousOperand;
+
+    if (this.operation != null) {
+      this.previousOperandElement.innerText = 
+        `${this.previousOperand} ${this.operation}`;
+    } else {
+      this.previousOperandElement.innerText = "";
+    }
   }
 }
 
@@ -78,6 +86,10 @@ const calculator = new Calculator(currentOperandElement, previousOperandElement)
 
 numberButtons.forEach(button => {
   button.addEventListener('click', () => {
+    if (calculator.previousOperand === "" && calculator.currentOperand !== "" && calculator.readyToReset) {
+      calculator.currentOperand = "";
+      calculator.readyToReset = false;
+    }
     calculator.appendNumber(button.innerText);
     calculator.updateDisplay();
   })
@@ -91,29 +103,16 @@ operatorButtons.forEach(button => {
 })
 
 equalsButton.addEventListener('click', button => {
-  calculator.compute();
+  calculator.operate();
   calculator.updateDisplay();
 })
 
-function add(num1, num2) {
-  if(Number.isInteger(num1) && Number.isInteger(num2)) {
-    return num1 + num2;
-  }
-  return "please choose a number";
-};
+resetButton.addEventListener('click', button => {
+  calculator.clear();
+  calculator.updateDisplay();
+})
 
-function subtract(num1, num2) {
-  return num1 - num2;
-};
-
-function multiply(num1, num2) {
-  return num1 * num2;
-}
-
-function divide(num1, num2) {
-  return num1 / num2;
-}
-
-function updateDisplay() {
-
-}
+deleteButton.addEventListener('click', button => {
+  calculator.delete();
+  calculator.updateDisplay();
+})

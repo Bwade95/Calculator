@@ -1,17 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
 
-html {
-  font-size: 80%;
-  box-sizing: border-box;
-  background-image: linear-gradient(to right, rgba(200, 130, 130, .3), rgba(180, 159, 190, 0.3)),url('images/webb.png');
-}
-
-.title {
-  font-size: 4rem;
-  position: absolute;
-  background: red;
-  color: #fff;
-  text-shadow: 1px 1px #333;
+:root {
+  --gradient: linear-gradient(to right, rgba(27, 167, 167, 0.3), rgba(26, 146, 86, 0.3));
 }
 
 *, *::before, *::after {
@@ -19,6 +9,26 @@ html {
   padding: 0;
   box-sizing: inherit;
   font-family: 'Teko', sans-serif;
+}
+
+html {
+  font-size: 80%;
+  box-sizing: border-box;
+  background-image: var(--gradient), url('/images/webb.png');
+}
+
+h1 {
+  font-size: 4rem;
+  display: block;
+  padding-top: 30px;
+  padding-left: 50px;
+  color: #333;
+  text-shadow: 1px 1px #fff;
+}
+
+footer {
+  text-align: center;
+  padding: 3px;
 }
 
 .calculator-body {
@@ -35,14 +45,26 @@ html {
 .output {
   width: 100%;
   font-size: 5rem;
-  height: 80px;
+  height: 120px;
   border: 1px solid black;
   border-radius: 3px;
   background-color: #fff;
   color: #333;
-  text-align: right;
-  padding-right: 20px;
-  padding-left: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.previous-operand {
+  font-size: 3rem;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.current-operand {
+  font-size: 4rem;
+  padding-right: 10px;
 }
 
 .calculator-buttons {
