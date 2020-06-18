@@ -1,35 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
 
+:root {
+  --gradient: linear-gradient(to right, rgba(228, 116, 116, .5), rgba(200, 131, 235, .5));
+  --buttons: rgba(255, 255, 255, 0.7); 
+  --buttonhover: rgba(255, 255, 255, 0.9);
+}
+
 * {
   padding: 0;
   margin: 0;
   font-family: 'Teko', sans-serif;
 }
 
-body {
-  background: linear-gradient(to right, #e37474, #c883eb);
+html {
+  box-sizing: border-box;
+  background-image: var(--gradient), url('images/webb.png');
+  background-repeat: repeat;
+  align-items: center;
+  justify-content: center;
 }
 
+body {
+  margin: 5%;
+}
+
+.title {
+  background: red;
+  border: 3px solid  black;
+  margin-top: 5%;
+  text-align: center;
+}
 .calculator-body {
   display: grid;
   justify-content: center;
   align-content: center;
-  min-height: 100vh;
-  grid-template-columns: repeat(4, 80px);
-  grid-template-rows: minmax(80px, auto) repeat(5, 80px);
+  grid-template-columns: repeat(4, 8.6vh);
+  grid-template-rows: minmax(4.3vh, auto) repeat(5, 8.6vh);
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  width: 400;
+  height: 60vh;
+  min-width: 50vh;
+  min-height: 60vh;
+  padding: 2%;
+  margin: 2% 5% 2% 5%;
 }
 
 .calculator-body > button {
+  background: var(--buttons);
   padding: 10px;
   font-size: 1.5rem;
   background-color: rgba(255, 255, 255, .7);
-  border: 1px solid white;
+  border: 1px solid;
   cursor: pointer;
   outline: none;
 }
 
 .calculator-body > button:hover{
-  background-color: rgba(255, 255, 255, .9);
+  margin: 2%;
+  border: 2px solid;
 } 
 
 .span-two {
@@ -39,13 +68,11 @@ body {
 .output {
   grid-column: 1 / -1;
   background-color: rgba(0, 0, 0, .7);
-  border: 2px solid white;
-  padding-top: 40px; 
-  padding-right: 10px;
+  border: 1px solid black;
+  border-bottom: 0;
   color: rgba( 230, 230, 230, .95);
   display: flex;
   align-items: flex-end;
-  flex-direction: column;
 }
 
 .output .output-text {
